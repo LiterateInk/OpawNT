@@ -12,6 +12,16 @@ import kotlinx.serialization.json.jsonPrimitive
 import kotlin.time.DurationUnit
 import kotlin.time.toDuration
 
+/**
+ * Log in
+ *
+ * @param clientId Client id
+ * @param clientSecret Client secret
+ * @param grantType Grant type (`saml2` or `refresh_token`)
+ * @param params Additional login parameters
+ * @param instanceUrl OpenENT instance url
+ * @param httpClient An optional http client
+ */
 suspend fun login(clientId: String, clientSecret: String, grantType: String, params: Map<String, String>, instanceUrl: String, httpClient: HttpClient = HttpClient()): Authentication {
     val client = httpClient.config {
         defaultRequest {

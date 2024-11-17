@@ -6,6 +6,11 @@ import ink.literate.opawnt.models.Authentication
 import ink.literate.opawnt.models.UserInfo
 import kotlinx.serialization.json.jsonObject
 
+/**
+ * Fetch account information
+ *
+ * @param auth Authentication
+ */
 suspend fun userInfo(auth: Authentication): UserInfo {
     val request = Request("/auth/oauth2/userinfo")
     request.useAuthentication(auth)

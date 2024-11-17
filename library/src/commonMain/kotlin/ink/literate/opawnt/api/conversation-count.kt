@@ -12,7 +12,14 @@ enum class ConversationBox {
     OUTBOX
 }
 
-suspend fun conversationCount(auth: Authentication, box: ConversationBox, unread: Boolean = true): Int {
+/**
+ * Gets the number of read/unread messages in a conversation box
+ *
+ * @param auth Authentication authentication
+ * @param box Conversation box (either INBOX, DRAFT or OUTBOX)
+ * @param unread Only fetch unread messages if set to true (defaults to `true`)
+ */
+suspend fun conversationCount(/** Authentication param */ auth: Authentication, box: ConversationBox, unread: Boolean = true): Int {
     val request = Request("/conversation/count/${box.name}?unread=$unread")
     request.useAuthentication(auth)
 

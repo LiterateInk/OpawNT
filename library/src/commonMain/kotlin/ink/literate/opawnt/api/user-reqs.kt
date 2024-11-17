@@ -6,6 +6,11 @@ import ink.literate.opawnt.models.Authentication
 import ink.literate.opawnt.models.UserRequirements
 import kotlinx.serialization.json.jsonObject
 
+/**
+ * Fetch user requirements
+ *
+ * @param auth Authentication
+ */
 suspend fun userRequirements(auth: Authentication): UserRequirements {
     val request = Request("/auth/user/requirements")
     request.useAuthentication(auth)

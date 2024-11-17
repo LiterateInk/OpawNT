@@ -30,11 +30,12 @@ suspend fun login(clientId: String, clientSecret: String, grantType: String, par
     )
 
     val response = request.send(client).jsonObject
+    val finalInstanceUrl = when (instanceUrl.endsWith("/")) {true -> instanceUrl false -> instanceUrl + "/"}
 
     return Authentication(
         clientId = clientId,
         clientSecret = clientSecret,
-        instanceUrl = instanceUrl,
+        instanceUrl = finalInstanceUrl,
         tokenType = response["token_type"]!!.jsonPrimitive.content,
         accessToken = response["access_token"]!!.jsonPrimitive.content,
         refreshToken = response["refresh_token"]!!.jsonPrimitive.content,

@@ -29,7 +29,11 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                //put your multiplatform dependencies here
+                implementation(libs.kotlinx.datetime)
+                implementation(libs.kotlinx.serialization.core)
+                implementation(libs.kotlinx.serialization.json)
+                implementation(libs.ktor.client.core)
+                implementation(libs.ktor.client.okhttp)
             }
         }
         val commonTest by getting {

@@ -7,6 +7,7 @@ import io.ktor.client.plugins.*
 import io.ktor.http.*
 import kotlinx.datetime.Clock
 import kotlinx.serialization.json.int
+import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.json.jsonPrimitive
 import kotlin.time.DurationUnit
 import kotlin.time.toDuration
@@ -28,7 +29,7 @@ suspend fun login(clientId: String, clientSecret: String, grantType: String, par
         ) + params
     )
 
-    val response = request.send(client)
+    val response = request.send(client).jsonObject
 
     return Authentication(
         clientId = clientId,

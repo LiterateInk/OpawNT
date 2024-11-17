@@ -8,9 +8,9 @@ suspend fun handleResponse(response: HttpResponse): JsonElement {
 
     val content = Json.parseToJsonElement(responseBody)
 
-    if (response.status.value != 200) {
+    if (response.status.value < 200 || response.status.value > 299) {
         val contentObj = content.jsonObject
-        throw Error(contentObj["error"]!!.jsonPrimitive.content)
+        throw Error("${contentObj["error"]!!.jsonPrimitive.content} (${response.status.value})")
     }
 
     return content

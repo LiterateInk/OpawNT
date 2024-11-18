@@ -9,7 +9,10 @@ import kotlinx.datetime.toLocalDateTime
 import kotlinx.serialization.json.*
 
 fun decodeBoxConversation(boxConv: JsonObject): BoxConversation {
-    val from = BoxSender(id = boxConv["from"]!!.jsonPrimitive.content, name = boxConv["displayNames"]!!.jsonArray.find { it.jsonArray[0].jsonPrimitive.content == boxConv["from"]!!.jsonPrimitive.content }!!.jsonArray[1].jsonPrimitive.content)
+    val from = BoxSender(
+        id = boxConv["from"]!!.jsonPrimitive.content,
+        name = if (boxConv["fromName"] != null) boxConv["fromName"]!!.jsonPrimitive.content else boxConv["displayNames"]!!.jsonArray.find { it.jsonArray[0].jsonPrimitive.content == boxConv["from"]!!.jsonPrimitive.content }!!.jsonArray[1].jsonPrimitive.content
+    )
     val to = boxConv["to"]!!.jsonArray.map {toId -> boxConv["displayNames"]!!.jsonArray.find { it.jsonArray[0].jsonPrimitive.content == toId.jsonPrimitive.content }!!.jsonArray[1].jsonPrimitive.content }
     val cc = boxConv["cc"]!!.jsonArray.map {toId -> boxConv["displayNames"]!!.jsonArray.find { it.jsonArray[0].jsonPrimitive.content == toId.jsonPrimitive.content }!!.jsonArray[1].jsonPrimitive.content }
     val cci = boxConv["cci"]!!.jsonArray.map {toId -> boxConv["displayNames"]!!.jsonArray.find { it.jsonArray[0].jsonPrimitive.content == toId.jsonPrimitive.content }!!.jsonArray[1].jsonPrimitive.content }

@@ -9,14 +9,15 @@ import kotlinx.serialization.json.jsonPrimitive
 enum class ConversationBox {
     INBOX,
     DRAFT,
-    OUTBOX
+    OUTBOX,
+    TRASH
 }
 
 /**
  * Gets the number of read/unread messages in a conversation box
  *
  * @param auth Authentication authentication
- * @param box Conversation box (either INBOX, DRAFT or OUTBOX)
+ * @param box Conversation box (either INBOX, DRAFT, OUTBOX or TRASH)
  * @param unread Only fetch unread messages if set to true (defaults to `true`)
  */
 suspend fun conversationCount(auth: Authentication, box: ConversationBox, unread: Boolean = true): Int {

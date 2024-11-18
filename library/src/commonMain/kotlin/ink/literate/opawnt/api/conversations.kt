@@ -11,7 +11,7 @@ import kotlinx.serialization.json.jsonObject
  * Get the list of conversations from a conversation box.
  *
  * @param auth Authentication
- * @param box Conversation box (either INBOX, DRAFT or OUTBOX)
+ * @param box Conversation box (either INBOX, DRAFT, OUTBOX or TRASH)
  * @param unread Only fetch unread messages if set to true (defaults to `false`)
  */
 suspend fun conversations(auth: Authentication, box: ConversationBox, page: Int = 0, unread: Boolean = false): List<BoxConversation> {

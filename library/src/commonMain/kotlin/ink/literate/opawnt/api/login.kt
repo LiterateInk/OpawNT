@@ -39,7 +39,7 @@ suspend fun login(clientId: String, clientSecret: String, grantType: String, par
         ) + params
     )
 
-    val response = request.send(client).jsonObject
+    val response = request.send(client)!!.jsonObject
     val finalInstanceUrl = when (instanceUrl.endsWith("/")) {true -> instanceUrl false -> instanceUrl + "/"}
 
     return Authentication(

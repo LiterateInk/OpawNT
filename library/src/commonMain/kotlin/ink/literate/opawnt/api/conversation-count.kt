@@ -24,7 +24,7 @@ suspend fun conversationCount(auth: Authentication, box: ConversationBox, unread
     val request = Request("/conversation/count/${box.name}?unread=$unread")
     request.useAuthentication(auth)
 
-    val response = request.send(auth.client).jsonObject
+    val response = request.send(auth.client)!!.jsonObject
 
     return response["count"]!!.jsonPrimitive.int
 }

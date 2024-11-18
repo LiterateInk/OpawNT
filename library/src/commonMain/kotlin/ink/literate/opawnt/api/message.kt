@@ -16,7 +16,7 @@ suspend fun message(auth: Authentication, id: String): Message {
     val request = Request("/conversation/message/$id")
     request.useAuthentication(auth)
 
-    val response = request.send(auth.client).jsonObject
+    val response = request.send(auth.client)!!.jsonObject
 
     return decodeMessage(auth, response)
 }

@@ -47,7 +47,7 @@ class Request(path: String) {
         this.headers["Authorization"] = "Bearer ${auth.accessToken}"
     }
 
-    suspend fun send(client: HttpClient): JsonElement {
+    suspend fun send(client: HttpClient): JsonElement? {
         val httpMethod = this.method
         val httpHeaders = this.headers
         val httpContent = this.content

@@ -15,7 +15,7 @@ suspend fun userRequirements(auth: Authentication): UserRequirements {
     val request = Request("/auth/user/requirements")
     request.useAuthentication(auth)
 
-    val response = request.send(auth.client).jsonObject
+    val response = request.send(auth.client)!!.jsonObject
 
     return decodeUserRequirements(response)
 }

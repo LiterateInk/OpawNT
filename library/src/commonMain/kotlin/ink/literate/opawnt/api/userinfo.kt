@@ -15,7 +15,7 @@ suspend fun userInfo(auth: Authentication): UserInfo {
     val request = Request("/auth/oauth2/userinfo")
     request.useAuthentication(auth)
 
-    val response = request.send(auth.client).jsonObject
+    val response = request.send(auth.client)!!.jsonObject
 
     return decodeUserInfo(response)
 }

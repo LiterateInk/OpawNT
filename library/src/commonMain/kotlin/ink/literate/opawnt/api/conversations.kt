@@ -18,7 +18,7 @@ suspend fun conversations(auth: Authentication, box: ConversationBox, page: Int 
     val request = Request("/conversation/list/${box.name}?page=$page&unread=$unread")
     request.useAuthentication(auth)
 
-    val response = request.send(auth.client).jsonArray
+    val response = request.send(auth.client)!!.jsonArray
 
     return response.map { decodeBoxConversation(it.jsonObject) }
 }
